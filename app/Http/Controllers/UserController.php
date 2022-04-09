@@ -45,7 +45,7 @@ class UserController extends Controller
        echo" register";
         if($u->save()){
             $u->attachRole('user');
-            return redirect('userDashboard');
+            return redirect('dashboard');
             // ->with(['success'=>'user created successful']);
         }
 

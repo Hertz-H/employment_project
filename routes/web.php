@@ -68,9 +68,9 @@ Route::get('/activate_job/{id}/{active}',[JobPagController::class,"activate"]);
 
 
 
-// Route::get('/list_companies',function(){
-//     return view("dashboard.list_companies");
-// });
+Route::get('/dashboard',function(){
+    return view("dashboard.user.dashboard");
+});
 // Route::get('/add_services',function(){
 //     return view("dashboard.services");
 // });
