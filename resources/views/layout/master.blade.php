@@ -81,9 +81,13 @@
                   <i class="fas fa-user"></i><span  > Portfilio</span> 
               </div>
               </a> --}}
-            <div class="side_item">
-                <a href="/log_in"><i class="fas fa-user"></i><span  > log out</span> </a>
+              <div class="side_item">
+                <a href="/change-password"><i class="fas fa-user"></i><span  >change password</span> </a>
             </div>
+            <div class="side_item">
+                <a href="/logout"><i class="fas fa-user"></i><span  > log out</span> </a>
+            </div>
+           
         </div>
 @yield('content')
 </html>

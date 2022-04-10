@@ -32,11 +32,11 @@
                                         @if ($item["is_active"]==1)
                                         <span style ="background-color: #e8fadf ;
                                         color: #71dd37;padding: 5px 8px; border-radius: 4px;
-                                        padding-bottom: 9px;"class=" ">مفعل</span>
+                                        padding-bottom: 9px;"class=" ">active</span>
                                         @else
                                         <span class=" " style="color: #ea2b33;
                                         background-color: #ffeced;padding: 5px 8px; border-radius: 4px;
-                                        padding-bottom: 9px;">موقف</span>
+                                        padding-bottom: 9px;">unactive</span>
                                         @endif
                                          </td>
                                        <td> 

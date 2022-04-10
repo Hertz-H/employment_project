@@ -29,21 +29,27 @@
                                      
                                       <td>{{$item["company"]}}</td>
                                       <td>
-                                       @if ($item["is_active"]==1)
-                                       <span class=" ">مفعل</span>
-                                       @else
-                                       <span class=" ">موقف</span>
-                                       @endif
+                                        @if ($item["is_active"]==1)
+                                        <span style ="background-color: #e8fadf ;
+                                        color: #71dd37;padding: 5px 8px; border-radius: 4px;
+                                        padding-bottom: 9px;"class=" ">active</span>
+                                        @else
+                                        <span class=" " style="color: #ea2b33;
+                                        background-color: #ffeced;padding: 5px 8px; border-radius: 4px;
+                                        padding-bottom: 9px;">unactive</span>
+                                        @endif
+                                         </td>
+                                       <td> 
                                        
-                                       
-                                      
-                                        </td>
-                                      <td> 
-                                        <a href="experience/edit?name=<%=data[index]._id%>" class=" edit btn "><i class="fas fa-edit"></i></a><a data-bs-toggle="modal" data-bs-target="#exampleModal<%=data[index]._id%>" class="btn delet text-danger" ><i class="fas fa-trash-alt"></i></a>
-
-                            
-                                       
-                                      </td>
+                                         <a href="update_ad/{{$item["id"]}}" class=" edit btn "><i class="fas fa-edit"></i></a>
+                                         @if ($item["is_active"]==1)
+                                         <a href="activate_ad/{{$item["id"]}}/{{$item["is_active"]}}" class="btn  text-danger" ><i class="fas fa-trash-alt"></i></a>
+                                            
+                                         @else
+                                         <a href="activate_ad/{{$item["id"]}}/{{$item["is_active"]}}" class="btn  " style="color: #71dd37" >activate</a>
+                                             
+                                         @endif
+                                       </td>
                                     </tr>
                                     @endforeach
                                   </tbody>

@@ -21,10 +21,13 @@ class CompanyController extends Controller
 
 
     public function list(){
-        $data = Company::All();
-        if(isset($data)){
-            echo "there is data "  ;
-        }
+
+        $data = Company::with('jobs')->get();
+        // return response( $data);
+        // $data = Company::All();
+        // if(isset($data)){
+        //     echo "there is data "  ;
+        // }
         return view('dashboard.list_companies')->with("data",$data);
     }
     public function updatePage(Request $request){

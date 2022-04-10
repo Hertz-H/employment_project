@@ -59,33 +59,25 @@
 </style>
 <body>
     <div class=" Sign  ">
-        <h3 class="text-center " > log in</h3>
-       
-        @if (session('error'))
-            <div class="alert alert-danger" role="alert">
-                {{ session('error') }}
-            </div>
-        @endif
-            <form class="row g-3 needs-validation"   action="{{route('doLogin')}}" method="post">
+        <h3 class="text-center " > Forgot Password</h3>
+ 
+            <form class="row g-3 needs-validation"    action="{{ route('password.email') }}" method="post">
                 @csrf
+
+                @if (session('status'))
+                    <div class="alert alert-ssuccess">
+                        {{ session('status') }}
+                    </div>
+                @endif
             <div class="col-12">
               <label for="inputEmail" class="form-label">Email</label>
               <input type="Email" class="form-control" id="inputEmail" placeholder="username@gmail.com" name="email">
             </div>
-            @error('email')
-            <span style="color:red;font-size:12px"> {{ $message }} </span> 
-          
-           @enderror
-            <div class="col-md-12">
-              <label for="inputPassword4" class="form-label">Password</label>
-              <input type="password" class="form-control" id="inputPassword4" placeholder="Password" name="password">
-            </div>
-            @error('password')
-            <span style="color:red;font-size:12px"> {{ $message }} </span> 
-          
-           @enderror
+           
+            
+  
             <div class="col-12 ">
-              <button type="submit"  class="btn  save">login </button>
+              <button type="submit"  class="btn  save">Send Password Link</button>
             </div>
             
           </form>

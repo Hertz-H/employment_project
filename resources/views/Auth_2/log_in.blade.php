@@ -60,32 +60,27 @@
 <body>
     <div class=" Sign  ">
         <h3 class="text-center " > log in</h3>
-       
-        @if (session('error'))
-            <div class="alert alert-danger" role="alert">
-                {{ session('error') }}
-            </div>
-        @endif
+ 
             <form class="row g-3 needs-validation"   action="{{route('doLogin')}}" method="post">
                 @csrf
             <div class="col-12">
               <label for="inputEmail" class="form-label">Email</label>
               <input type="Email" class="form-control" id="inputEmail" placeholder="username@gmail.com" name="email">
             </div>
-            @error('email')
-            <span style="color:red;font-size:12px"> {{ $message }} </span> 
-          
-           @enderror
             <div class="col-md-12">
               <label for="inputPassword4" class="form-label">Password</label>
               <input type="password" class="form-control" id="inputPassword4" placeholder="Password" name="password">
             </div>
-            @error('password')
-            <span style="color:red;font-size:12px"> {{ $message }} </span> 
-          
-           @enderror
+            <div class="col-md-6 offset-md-4">
+                <div class="checkbox">
+                    <label>
+                        <a href="{{ route('forget.password.get') }}">Reset Password</a>
+                    </label>
+                </div>
+            </div>
+        </div>
             <div class="col-12 ">
-              <button type="submit"  class="btn  save">login </button>
+              <button type="submit"  class="btn  save">login up</button>
             </div>
             
           </form>
