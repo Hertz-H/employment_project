@@ -22,8 +22,8 @@
 
                                 <li class="nav-item"><a href="/login" class="nav-link nav_icons"><i class="fas fa-sign-in-alt"></i></a></li>
                                 <li class="nav-item"><a href="/signup" class="nav-link nav_icons"><i class="fas fa-user-plus"></i></a></li>
-                                <li class="nav-item"><a href="profile.html" class="nav-link nav_icons"><i class="fas fa-user"></i></a></li>
-                                <li class="nav-item"><a href="profile.html" class="nav-link nav_icons"><i class="fas fa-user"></i></a></li>
+                                {{-- <li class="nav-item"><a href="profile.html" class="nav-link nav_icons"><i class="fas fa-user"></i></a></li>
+                                <li class="nav-item"><a href="profile.html" class="nav-link nav_icons"><i class="fas fa-user"></i></a></li> --}}
                                 
                              
                             </ul>

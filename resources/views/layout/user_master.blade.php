@@ -50,29 +50,41 @@
                 
             <div class="user_sec text-center ">
             <div class="user_img m-auto ">
-                <img  class=""src="/images/" alt="">
+             @if (isset($data['image']))
+             <img  class=""src="/images/ {{$data['image']}} " alt=""> 
+             @else
+             <img  class=""src="/images/{{session('image')}} " alt=""> 
+             @endif
+              
+            
+              
+                
             </div>
-            <h5  >Dalia Ahmed <i class="fas fa-user-edit per_edit"></i></h5>
+            <h5  >   @if (isset($data['name']))
+              <img  class=""src="/images/ {{$data['name']}} " alt=""> 
+              @else
+              <img  class=""src="/images/{{session('name')}} " alt=""> 
+              @endif Ela Ahmed <i class="fas fa-user-edit per_edit"></i></h5>
             
             </div>
-            <a href="list_users"> <div class="side_item ">
-              <i class="fas fa-user"></i><span  >Users</span> 
-          </div>
-        </a>
-            <a href="list_companies"> <div class="side_item ">
-                <i class="fas fa-user"></i><span  >Companies</span> 
+            <a href="/profile"> <div class="side_item ">
+                <i class="fas fa-user"></i><span  >Personal Info</span> 
             </div>
           </a>
-           <a href="list_jobs"> <div class="side_item sel_side">
-                <i class="fas fa-user"></i><span  >Jobs</span> 
+           <a href="/list_experiences"> <div class="side_item sel_side">
+                <i class="fas fa-user"></i><span  >Experience</span> 
              </div>
           </a>
-          <a href="add_ad">  <div class="side_item">
-                <i class="fas fa-user"></i><span  > Adds</span> 
+          <a href="/list_education">  <div class="side_item">
+                <i class="fas fa-user"></i><span  > Education</span> 
             </div>
           </a>
-            <a href="list_services"> <div class="side_item ">
-              <i class="fas fa-user"></i><span  >Services</span> 
+          <a href="/list_skills"> <div class="side_item ">
+            <i class="fas fa-user"></i><span  >skills</span> 
+        </div>
+          </a>
+            <a href="/list_contacts"> <div class="side_item ">
+              <i class="fas fa-user"></i><span  >contact</span> 
           </div>
             </a>
             {{-- <a href="/contact">
@@ -86,10 +98,10 @@
               </div>
               </a> --}}
               <div class="side_item">
-                <a href="change-password"><i class="fas fa-user"></i><span  >change password</span> </a>
+                <a href="/change-password"><i class="fas fa-user"></i><span  >change password</span> </a>
             </div>
             <div class="side_item">
-                <a href="logout"><i class="fas fa-user"></i><span  > log out</span> </a>
+                <a href="/logout"><i class="fas fa-user"></i><span  > log out</span> </a>
             </div>
            
         </div>

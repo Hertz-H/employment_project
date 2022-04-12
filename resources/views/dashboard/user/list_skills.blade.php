@@ -1,18 +1,29 @@
-@extends('layout.master')
+@extends('layout.user_master')
 
 @section('content')
 
 
             <div class="form-container">
                 <div class="exper_info ">
-                    <h3 class="d-inline"> add Service </h3> <a  class="add add_exp " href="/add_service"> add</a>
+                  @if (session('success'))
+                  <div class="alert alert-success" role="alert">
+                      {{ session('success') }}
+                  </div>
+                  @elseif (session('error'))
+                      <div class="alert alert-danger" role="alert">
+                          {{ session('error') }}
+                      </div>
+                  @endif
+                    <h3 class="d-inline"> add Skill </h3> <a  class="add add_exp " href="/add_skill"> add</a>
                          
                                 </div><table class="table table-image">
                                   <thead>
                                     <tr>
                                       {{-- <th scope="col">Number</th> --}}
                                       
-                                      <th scope="col">Title</th>
+                                      <th scope="col">Name</th>
+                                      <th scope="col">Degree</th>
+
                                       {{-- <th scope="col">description</th> --}}
                                       <th scope="col">status</th>
                                       <th scope="col">actions</th>
@@ -23,8 +34,9 @@
                                
                                     <tr>
             
-                                     
-                                      <td>{{$item["title"]}}</td>
+                                      <td>{{$item["name"]}}</td>
+                                      
+                                      <td>{{$item["degree"]}}</td>
                                       <td>
                                        @if ($item["is_active"]==1)
                                        <span style ="background-color: #e8fadf ;
@@ -37,7 +49,7 @@
                                        @endif
                                         </td>
                                       <td> 
-                                        <a href="update_service/{{$item["id"]}}" class=" edit btn "><i class="fas fa-edit"></i></a><a href="activate_service/{{$item["id"]}}/{{$item["is_active"]}}" class="btn  text-danger" ><i class="fas fa-trash-alt"></i></a>
+                                        <a href="update_skill/{{$item["id"]}}" class=" edit btn "><i class="fas fa-edit"></i></a><a href="activate_skill/{{$item["id"]}}/{{$item["is_active"]}}" class="btn  text-danger" ><i class="fas fa-trash-alt"></i></a>
                                       </td>
                                     </tr>
                                     @endforeach

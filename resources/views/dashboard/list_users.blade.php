@@ -5,7 +5,7 @@
 
             <div class="form-container">
                 <div class="exper_info ">
-                    <h3 class="d-inline"> Jobs </h3> <a  class="add add_exp " href="/add_job"> add</a>
+                    <h3 class="d-inline">Users </h3> <a  class="add add_exp " href="/add_user"> add</a>
                          
                                 </div><table class="table table-image">
                                   <thead>
@@ -14,8 +14,7 @@
                                 
                                       <th scope="col">Name</th>
                         
-                                      <th scope="col">interival</th>
-                                      <th scope="col">company</th>
+                                      <th scope="col">Email</th>
                                     
                                       <th scope="col">status</th>
                                       <th scope="col">actions</th>
@@ -27,11 +26,9 @@
                                         
                                    
                                     <tr>
-                                      <td>{{$item['title']}}</td>
-                                      <td>{{$item['interval']}}</td>
                                       <td>{{$item['name']}}</td>
-                                      {{-- <td>{{$item['start_date']}}</td>
-                                      <td>{{$item['end_date']}}</td> --}}
+                                      <td>{{$item['email']}}</td>
+                                     
 
 
                                       <td>
@@ -47,9 +44,9 @@
                                          </td>
                                        <td> 
                                          @if ($item["is_active"]==1)
-                                         <a href="update_job/{{$item["id"]}}" class=" edit btn "><i class="fas fa-edit"></i></a><a href="activate_job/{{$item["id"]}}/{{$item["is_active"]}}" class="btn  text-danger" ><i class="fas fa-trash-alt"></i></a>
+                                         <a href="update_user/{{$item["id"]}}" class=" edit btn "><i class="fas fa-edit"></i></a><a href="activate_user/{{$item["id"]}}/{{$item["is_active"]}}" class="btn  text-danger" ><i class="fas fa-trash-alt"></i></a>
                                          @else
-                                         <a href="update_job/{{$item["id"]}}" class=" edit btn "><i class="fas fa-edit"></i></a><a href="activate_job/{{$item["id"]}}/{{$item["is_active"]}}" class="btn  " style="color: #71dd37" >activate</a>
+                                         <a href="update_user/{{$item["id"]}}" class=" edit btn "><i class="fas fa-edit"></i></a><a href="activate_user/{{$item["id"]}}/{{$item["is_active"]}}" class="btn  " style="color: #71dd37" >activate</a>
                                          @endif
                                        
                                        </td>

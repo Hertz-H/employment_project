@@ -68,12 +68,15 @@ class AdController extends Controller
 
     public function add(Request $request){
         Validator::validate($request->all(),[
-            'name'=>['regex:/(^([a-zA-z]+)(\d+)?$)/'],
-           
+            'name'=>['required','min:3','max:50'],
+            'image'=>['required'],
            
         ],[
-            'name.regex'=>'title must contain letters',
-            
+          
+            'name.required'=>'name is required',
+            'name.min'=>'name must be at least 3 letters',
+            'name.max'=>'name must be at most 50 letters',
+            'image.required'=>'image is required',
         ]);
         $ad=new Ad();
         $ad->company=$request->name;
@@ -82,7 +85,7 @@ class AdController extends Controller
         $ad->image=$imageName;
    
         if($ad->save()){
-           //  return route('companies')->with([ 'success'=>'created successfully' ]);
+            return redirect('list_ads')->with([ 'success'=>'created successfully' ]);
         }
        else{
            return back();

@@ -16,25 +16,29 @@ class ServiceController extends Controller
         return view('dashboard.add_service');
     }
     public function add(Request $request){
+      
         Validator::validate($request->all(),[
-            'title'=>['regex:/(^([a-zA-z]+)(\d+)?$)/'],
-            'description'=>['regex:/(^([a-zA-z]+)(\d+)?$)/'],
+            'title'=>['required','min:3','max:50'],
+          
+            'description'=>['required'],
            
         ],[
-            'title.regex'=>'tilte must contain letters',
-             'description.regex'=>'description must contain letters',
+            'title.required'=>'tilte is required',
+            'title.min'=>'title must be at least 3 letters',
+            'title.max'=>'title must be at most 50 letters',
+             'description.required'=>'description is required',
         ]);
         $service=new Service();
         $service->title=$request->title;
         $service->description=$request->description;
    
         if($service->save()){
-           //  return route('companies')->with([ 'success'=>'created successfully' ]);
+            return redirect('list_services')->with([ 'success'=>'created successfully' ]);
         }
        else{
-           return back();
+            return redirect('list_services')->with([ 'error'=>'creation failed' ]);
        }
-        return view('dashboard.add_service');
+       
     }
 
 
@@ -43,8 +47,6 @@ class ServiceController extends Controller
         if(isset($data)){
             echo "there is data "  ;
         }
-      
-        // $data=Service::all();
 
         return view('dashboard.update_service')->with("data",$data);
     }

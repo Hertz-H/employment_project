@@ -46,7 +46,7 @@ class CompanyController extends Controller
       
         Company::where('id',  $request->id)
                 ->update([
-                           'name'=>$request->title,
+                           'name'=>$request->name,
                            'logo'=>$imageName
                            ]
                         );
@@ -89,16 +89,23 @@ class CompanyController extends Controller
         // echo $request->logo;
      
         Validator::validate($request->all(),[
-            'name'=>['regex:/(^([a-zA-z]+)(\d+)?$)/'],
+           
+
             // 'link'=>['regex:/^(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9(\.\?)?]/'],
-            'location'=>['regex:/(^([a-zA-z]+)(\d+)?$)/'],
+            //['regex:/(^([a-zA-z]+)(\d+)?$)/']
+        // 'user_pass'=>['required','min:5']
             'logo'=>['required'],
-            // 'user_pass'=>['required','min:5']
+            'location'=>['required'],
+            'name'=>['required','min:3','max:50'],
+          
+           
         ],[
-            'name.regex'=>'name must contain letters',
+            'name.required'=>'name is required',
+            'name.min'=>'name must be at least 3 letters',
+            'name.max'=>'name must be at most 50 letters',
         //    ' link.regex'=>'link must vaild facebook format '
-             'location.regex'=>'name must contain letters',
-             'location.logo'=>'logo is required',
+             'location.required'=>'name must contain letters',
+             'logo.required'=>'logo is required',
         ]);
      $company=new Company();
      $company->name=$request->name;

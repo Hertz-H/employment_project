@@ -9,6 +9,11 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AdController;
+use App\Http\Controllers\User\EducationController;
+use App\Http\Controllers\User\ExperienceController;
+use App\Http\Controllers\User\SkillController;
+use App\Http\Controllers\User\ProfileController;
+
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
@@ -53,13 +58,20 @@ Route::post('/login',[UserController::class,"doLogin"])->name('doLogin');
 Route::group(['middleware'=>'auth'],function(){
     
 	Route::group(['middleware'=>'role:admin'],function(){
-
+/**----------------------
+ *    Users Routes
+ *------------------------**/ 
+Route::get('/list_users',[UserController::class,"list"]);      
+Route::get('/add_user',[UserController::class,"loadAdd"]);
+Route::post('/add_user',[UserController::class,"add"])->name('save_user');
+Route::get('/activate_user/{id}/{active}',[UserController::class,"activate"]);
+Route::get('/update_user/{id}',[UserController::class,"updatePage"]);
+Route::post('/update_user',[UserController::class,"update"])->name('updateUser');
   /**----------------------
  *    Service Routes
  *------------------------**/ 
-        
-        Route::get('/add_service',[ServiceController::class,"loadAdd"]);
         Route::get('/list_services',[ServiceController::class,"list"]);
+        Route::get('/add_service',[ServiceController::class,"loadAdd"]);
         Route::get('/update_service/{id}',[ServiceController::class,"updatePage"]);
         Route::post('/update_service',[ServiceController::class,"update"])->name('save_update');
         Route::get('/activate_service/{id}/{active}',[ServiceController::class,"activate"]);
@@ -99,6 +111,64 @@ Route::group(['middleware'=>'auth'],function(){
   
 	});
 	
+	Route::group(['middleware'=>'role:user'],function(){
+
+/**----------------------
+ *    Profile
+ *------------------------**/
+
+Route::get('/profile',[ProfileController::class,"list"]);
+Route::get('/update_profile',[ProfileController::class,"updatePage"]);
+Route::post('/update_profile',[ProfileController::class,"update"])->name('updateProfile');
+
+/**----------------------
+ * Education Routes
+ *------------------------**/      
+
+Route::post('/add_education',[EducationController::class,"add"])->name('save_edcation');
+Route::get('/add_education',[EducationController::class,"loadAdd"]);
+Route::get('/list_education',[EducationController::class,"list"]);
+Route::get('/update_education/{id}',[EducationController::class,"updatePage"]);
+Route::post('/update_education',[EducationController::class,"update"])->name('updateEducation');
+Route::get('/activate_education/{id}/{active}',[EducationController::class,"activate"]);
+
+/**----------------------
+ *    Experience
+ *------------------------**/
+Route::post('/add_experience',[ExperienceController::class,"add"])->name('save_experience');
+Route::get('/add_experience',[ExperienceController::class,"loadAdd"]);
+Route::get('/list_experiences',[ExperienceController::class,"list"]);
+Route::get('/update_experience/{id}',[ExperienceController::class,"updatePage"]);
+Route::post('/update_experience',[ExperienceController::class,"update"])->name('updateExperience');
+Route::get('/activate_experience/{id}/{active}',[ExperienceController::class,"activate"]);
+
+
+
+/**----------------------
+ *    Skill
+ *------------------------**/
+Route::post('/add_skill',[SkillController::class,"add"])->name('save_skill');
+Route::get('/add_skill',[SkillController::class,"loadAdd"]);
+Route::get('/list_skills',[SkillController::class,"list"]);
+Route::get('/update_skill/{id}',[SkillController::class,"updatePage"]);
+Route::post('/update_skill',[SkillController::class,"update"])->name('updateSkill');
+Route::get('/activate_skill/{id}/{active}',[SkillController::class,"activate"]);
+
+/**----------------------
+ *    Contact
+ *------------------------**/
+Route::post('/add_contact',[ContactController::class,"add"])->name('save_contact');
+Route::get('/add_contact',[ContactController::class,"loadAdd"]);
+Route::get('/list_contacts',[ContactController::class,"list"]);
+Route::get('/update_contact/{id}',[ContactController::class,"updatePage"]);
+Route::post('/update_contact',[ContactController::class,"update"])->name('updateContact');
+Route::get('/activate_contact/{id}/{active}',[ContactController::class,"activate"]);
+
+
+
+
+
+  });
 
     /**----------------------
   *    Change password
@@ -115,18 +185,12 @@ Route::get('/logout',[UserController::class,'logout'])->name('logout');
 });
 
 
-Route::get('/dashboard',function(){
-    return view("dashboard.user.dashboard");
-});
-// Route::get('/logout',[UserController::class,"logout"]);
+
 
  
-
-
-
-
-
-
+/**----------------------
+ *    Forget Password
+ *------------------------**/
 
 
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');

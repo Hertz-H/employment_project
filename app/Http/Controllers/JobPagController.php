@@ -24,11 +24,7 @@ class JobPagController extends Controller
         return view('template.job_details');
     }
 
-    public function loadAdd(){
-        $data=Company::all();
-        return view('dashboard.add_job')->with("data",$data);
-    }
-
+   
     
     public function updatePage(Request $request){
         $job=Job::find($request->id);
@@ -86,19 +82,34 @@ class JobPagController extends Controller
 
 
 
+    public function loadAdd(){
+        $data=Company::all();
+        return view('dashboard.add_job')->with("data",$data);
+    }
 
     
     public function add(Request $request){
-
+      
 
         Validator::validate($request->all(),[
-            'title'=>['regex:/(^([a-zA-z]+)(\d+)?$)/'],
-            'description'=>['regex:/(^([a-zA-z]+)(\d+)?$)/'],
+            'title'=>['required','min:3','max:50'],
+            'description'=>['required'],
+            'requirements'=>['required'],
+
+
+            // 'title'=>['regex:/(^([a-zA-z]+)(\d+)?$)/'],
+            // 'description'=>['regex:/(^([a-zA-z]+)(\d+)?$)/'],
             // 'requirements'=>['regex:/(^([a-zA-z]+)(\d+)?$)/'],
            
         ],[
-            'title.regex'=>'tilte must contain letters',
-             'description.regex'=>'description must contain letters',
+            'name.required'=>'name is required',
+            'name.min'=>'name must be at least 3 letters',
+            'name.max'=>'name must be at most 50 letters',
+            'description.required'=>'description is required',
+            'requirements.required'=>'requirements is required',
+
+            // 'title.regex'=>'tilte must contain letters',
+            //  'description.regex'=>'description must contain letters',
             //  'requirements.regex'=>' requirements must contain letters',
         ]);
         $job=new Job();
